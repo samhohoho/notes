@@ -82,3 +82,53 @@ number of days:
 ```java
 independenceDay.until(christmas, ChronoUnit.DAYS) // 174 days
 ```
+___
+### `getDayOfWeek`
+
+Yields value of
+`DayOfWeek` enumeration.
+
+`DayOfWeek.MONDAY` = `1`
+`DayOfWeek.SUNDAY` = `7`
+
+```java
+LocalDate.of(1900, 1, 1).getDayOfWeek().getValue()
+```
+
+`DayOfWeek` enumeration
+has convenience methods
+`plus` and `minus`.
+
+`DayOfWeek.SATURDAY.plus(3)`
+yields
+`DayOfWeek.TUESDAY`.
+
+Different from
+`java.util.Calendar`
+where Sunday
+has value 1
+and Saturday
+value 7.
+___
+### `datesUtil` method
+
+Yields streams of
+`LocalDate` objects.
+
+```java
+LocalDate start = LocalDate.of(2000, 1, 1);
+LocalDate endExclusive = LocalDate.now();
+Stream<LocalDate> allDays = start.datesUntil(endExclusive);
+Stream<LocalDate> firstDaysInMonth = start.datesUntil(endExclusive, Period.ofMonths(1));
+```
+___
+### Partial dates
+
+`MonthDay`, `YearMonth`, and `Year`
+to describe
+partial dates.
+
+Example,
+December 25
+can be represented
+as a `MonthDay`.
