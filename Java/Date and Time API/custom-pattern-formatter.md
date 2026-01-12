@@ -5,7 +5,8 @@ in the form
 `Wed 1969-07-16 09:32`.
 
 ```java
-formatter = DateTimeFormatter.ofPattern("E yyyy-MM-dd HH:mm");
+formatter = DateTimeFormatter
+    .ofPattern("E yyyy-MM-dd HH:mm");
 ```
 
 The number of times
@@ -39,3 +40,73 @@ ___
 `S` = fractions of second
 `y` = normal year,
 `Y` = "week-numbering year"
+
+[Pattern symbols](https://javadoc.scijava.org/Java21/java.base/java/time/format/DateTimeFormatter.html#ofLocalizedPattern(java.lang.String))
+___
+### Parse
+
+To parse a
+date/time value
+from a string.
+
+Uses standard
+`ISO_LOCAL_DATE` formatter:
+
+```java
+LocalDate churchsBirthday = LocalDate.parse("1903-06-14");
+```
+
+Uses custom formatter:
+
+```java
+ZonedDateTime apollo11launch =
+    ZonedDateTime.parse("1969-07-16 03:32:00-0400",
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ssxx"));
+```
+___
+### `ofLocalizedPattern` (Java 19)
+
+Yields a formatter
+that assembles
+parts of patterns
+in locale-specific way.
+wtih the appropriate
+separators and ordering
+of the parts.
+
+```java
+ZonedDateTime apollo11launch = ZonedDateTime.of(
+    1969, 7, 16, 9, 32, 0, 0,
+    ZoneId.of("America/New_York"));
+
+DateTimeFormatter formatter = DateTimeFormatter
+    .ofLocalizedPattern("yMMMd");
+formatter.withLocale(Locale.US)
+    .format(apollo11launch) // Jul 16, 1969
+formatter.withLocale(Locale.GERMANY)
+    .format(apollo11launch) // 16. Juli 1969
+formatter.withLocale(Locale.CHINA)
+    .format(apollo11launch) // 1969年7⽉16⽇
+        
+DateTimeFormatter formatter = DateTimeFormatter
+    .ofLocalizedPattern("yMMMEdhmsv");
+formatter.withLocale(Locale.US)
+    .format(apollo11launch) // Wed, Jul 16, 1969, 9:32:00 AM ET
+```
+
+Only specify symbols
+for the parts,
+in descending size.
+
+For hours,
+use `j` for
+localized 12- or
+14-hour format:
+
+```java
+formatter = DateTimeFormatter.ofLocalizedPattern("jm");
+formatter.withLocale(Locale.US)
+    .format(LocalTime.of(23, 59)) // 11:59 pm
+formatter.withLocale(Locale.GERMANY)
+    .format(LocalTime.of(23, 59)) // 23:59
+```
