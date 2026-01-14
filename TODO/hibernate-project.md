@@ -1,0 +1,13 @@
+# Hibernate
+
+Test fetch size.
+
+How to half read-only transaction, others update.
+
+Client-side statement caching.
+
+test statement caching
+
+test db sequence
+
+test batch vs bulk updates
