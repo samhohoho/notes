@@ -1,5 +1,14 @@
 # 5
 
+## 6.3.1.2 Multi-Version Concurrency Control
+
+PostgreSQL
+Each table row has two additional columns (xmin and xmax)
+explicit lockinga. SELECT FOR UPDATE
+
+The lack
+of locking makes it more difficult to implement a serializable schedule
+
 ## 6.3.1.1 Two-phase locking...
 
 deadlocks
