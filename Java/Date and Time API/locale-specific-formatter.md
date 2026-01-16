@@ -12,6 +12,7 @@ ___
 |`MEDIUM`|Jul 16, 1969|9:32:00 AM|
 |`LONG`|July 16, 1969|9:32:00 AM EDT|
 |`FULL`|Wednesday, July 16, 1969|9:32:00 AM EDT|
+
 ___
 ### Create formatters
 Static methods
